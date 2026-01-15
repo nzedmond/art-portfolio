@@ -31,7 +31,7 @@ const VideoCard = ({
           }
         });
       },
-      { rootMargin: '200px' } // Load when 200px away from viewport
+      { rootMargin: '50% 0px' } // Load when within 50% of viewport height
     );
 
     lazyObserver.observe(container);
