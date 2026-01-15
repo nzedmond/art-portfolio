@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { CINEMATIC_EASE } from '../utils/motion';
 import '../styles/Card.css';
 
 const Card = ({
@@ -45,7 +46,7 @@ const Card = ({
             rest: { opacity: 0, y: 20 },
             hover: { opacity: 1, y: 0 }
           }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.6, ease: CINEMATIC_EASE }}
         >
           <span className="card-category text-label">{category}</span>
           <h3 className="card-title text-section">{title}</h3>

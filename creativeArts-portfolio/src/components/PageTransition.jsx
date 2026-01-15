@@ -1,16 +1,18 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { PAGE_VARIANTS, TRANSITION_DURATION, CINEMATIC_EASE } from '../utils/motion';
 
 const PageTransition = ({ children, className = "" }) => {
   return (
     <motion.div
       className={className}
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -20 }}
+      initial="initial"
+      animate="animate"
+      exit="exit"
+      variants={PAGE_VARIANTS}
       transition={{
-        duration: 0.8,
-        ease: [0.22, 1, 0.36, 1] // Cinematic easeOutQuint-like curve
+        duration: TRANSITION_DURATION,
+        ease: CINEMATIC_EASE
       }}
     >
       {children}
