@@ -4,25 +4,16 @@ import ScrollReveal from '../components/ScrollReveal';
 import Section from '../components/Section';
 import Container from '../components/Container';
 import Card from '../components/Card';
+import Hero from '../components/Hero';
 
 const Home = () => {
   return (
     <PageTransition>
       {/* Hero Section */}
-      <Section className="hero-section" style={{ minHeight: '80vh', display: 'flex', alignItems: 'center' }}>
-        <Container>
-          <ScrollReveal>
-            <h1 className="text-hero">VISUAL STORYTELLER<br />BASED IN [CITY]</h1>
-          </ScrollReveal>
-          <ScrollReveal delay={0.2}>
-            <p className="text-body" style={{ marginTop: '2rem' }}>
-              CAPTURING MOMENTS WITH INTENTION & ARTISTRY.
-              SPECIALIZING IN CINEMATIC VIDEOGRAPHY AND
-              EDITORIAL PHOTOGRAPHY.
-            </p>
-          </ScrollReveal>
-        </Container>
-      </Section>
+      <Hero
+        title="VISUAL STORYTELLER<br/>BASED IN [CITY]"
+        subtitle="CAPTURING MOMENTS WITH INTENTION & ARTISTRY. SPECIALIZING IN CINEMATIC VIDEOGRAPHY AND EDITORIAL PHOTOGRAPHY."
+      />
 
       {/* Featured Work Skeleton */}
       <Section>
