@@ -1,0 +1,80 @@
+import React, { useState, useEffect } from 'react';
+import { NavLink, useLocation } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Menu, X } from 'lucide-react';
+import '../styles/Navbar.css';
+
+const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const location = useLocation();
+
+  // Handle scroll effect
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Close mobile menu on route change
+  useEffect(() => {
+    setIsOpen(false);
+  }, [location]);
+
+  return (
+    <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
+      <div className="nav-container">
+        <div className="logo">
+          <NavLink to="/">EDMOND NZIVUGIRA</NavLink>
+        </div>
+
+        {/* Desktop Navigation */}
+        <ul className="nav-links desktop-only">
+          <li><NavLink to="/">Home</NavLink></li>
+          <li><NavLink to="/videography">Video</NavLink></li>
+          <li><NavLink to="/photography">Photo</NavLink></li>
+          <li><NavLink to="/about">About</NavLink></li>
+          <li><NavLink to="/contact">Contact</NavLink></li>
+        </ul>
+
+        {/* Mobile Toggle */}
+        <div className="mobile-toggle" onClick={() => setIsOpen(!isOpen)}>
+          {isOpen ? <X size={24} /> : <Menu size={24} />}
+        </div>
+      </div>
+
+      {/* Mobile Menu Overlay */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            className="mobile-menu"
+            initial={{ opacity: 0, x: '100%' }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: '100%' }}
+            transition={{ type: 'tween', duration: 0.3 }}
+          >
+            <ul className="mobile-links">
+              {['Home', 'Video', 'Photo', 'About', 'Contact'].map((item) => {
+                const path = item === 'Home' ? '/' : `/${item.toLowerCase().replace('video', 'videography').replace('photo', 'photography')}`;
+                return (
+                  <motion.li
+                    key={item}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.1 }}
+                  >
+                    <NavLink to={path}>{item}</NavLink>
+                  </motion.li>
+                );
+              })}
+            </ul>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </nav>
+  );
+};
+
+export default Navbar;
