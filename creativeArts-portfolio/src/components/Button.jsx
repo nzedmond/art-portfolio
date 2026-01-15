@@ -27,7 +27,7 @@ const Button = ({
       <motion.span
         className="btn-content"
         whileHover={{ scale: 1.02 }}
-        whileTap={{ scale: 0.98 }}
+        whileTap={{ scale: 0.99 }}
         transition={{ type: 'spring', stiffness: 400, damping: 10 }}
       >
         {children}
