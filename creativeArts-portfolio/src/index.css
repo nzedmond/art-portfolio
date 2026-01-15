@@ -32,33 +32,62 @@ body {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
+/* Typography Scale */
 h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+.text-hero {
   font-family: var(--font-display);
   font-weight: 700;
+  line-height: 0.9;
+  color: var(--text-primary);
+  font-size: clamp(3.5rem, 8vw, 8rem);
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+h2,
+.text-headline {
+  font-family: var(--font-display);
+  font-weight: 600;
   line-height: 1.1;
+  color: var(--text-primary);
+  font-size: clamp(2.5rem, 5vw, 5rem);
+  letter-spacing: -0.01em;
+}
+
+h3,
+.text-section {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
   color: var(--text-primary);
 }
 
-h1 {
-  font-size: clamp(3rem, 5vw, 6rem);
-  letter-spacing: -0.02em;
-}
-
-h2 {
-  font-size: clamp(2rem, 3vw, 4rem);
-}
-
-p {
+h4,
+.text-subtitle,
+.text-label {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  /* Wide tracking */
   color: var(--text-secondary);
+}
+
+p,
+.text-body {
+  font-family: var(--font-body);
   font-weight: 300;
-  max-width: 60ch;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  /* Relaxed reading */
+  color: var(--text-secondary);
+  max-width: 65ch;
 }
 
 a {
@@ -73,7 +102,7 @@ ul {
 
 /* Utilities */
 .page-container {
-  padding-top: 100px;
+  padding-top: 120px;
   /* Space for Navbar */
   padding-left: var(--spacing-container);
   padding-right: var(--spacing-container);
@@ -86,5 +115,62 @@ ul {
   :root {
     --spacing-container: 1.5rem;
     --spacing-section: 80px;
+  }
+}
+
+/* Skeletons & Placeholders */
+.skeleton-box {
+  background: var(--bg-contrast);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--text-secondary);
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.8rem;
+  border: 1px solid #1a1a1a;
+}
+
+.hero-section {
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 2rem;
+  margin-bottom: var(--spacing-section);
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: var(--spacing-section);
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 2rem;
+}
+
+/* Aspect Ratios */
+.aspect-video {
+  aspect-ratio: 16 / 9;
+}
+
+.aspect-portrait {
+  aspect-ratio: 3 / 4;
+}
+
+.aspect-square {
+  aspect-ratio: 1 / 1;
+}
+
+@media (max-width: 768px) {
+  .grid-2 {
+    grid-template-columns: 1fr;
   }
 }
