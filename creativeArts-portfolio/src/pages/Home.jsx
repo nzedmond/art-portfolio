@@ -15,6 +15,17 @@ const Home = () => {
         subtitle="DIRECTOR / PHOTOGRAPHER"
       />
 
+      {/* Vision Statement */}
+      <Section style={{ padding: '8rem 0', textAlign: 'center' }}>
+        <Container size="md">
+          <ScrollReveal>
+            <p className="text-headline" style={{ lineHeight: '1.4' }}>
+              "It’s not about the shutter click. It’s about the silence before it. We craft visual legacies that speak to the human experience, preserving the feeling of a moment long after it has passed."
+            </p>
+          </ScrollReveal>
+        </Container>
+      </Section>
+
       {/* Featured Work Skeleton */}
       <Section>
         <Container>
