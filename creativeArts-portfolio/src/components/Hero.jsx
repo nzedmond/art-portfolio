@@ -67,6 +67,22 @@ const Hero = ({
             </motion.p>
           )}
         </div>
+
+        {/* Scroll Indicator */}
+        <motion.div
+          className="hero-scroll-indicator"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1, y: [0, 10, 0] }}
+          transition={{
+            delay: 1,
+            duration: 2,
+            ease: "easeInOut",
+            repeat: Infinity,
+            opacity: { duration: 1 }
+          }}
+        >
+          <div className="scroll-line" />
+        </motion.div>
       </Container>
     </div>
   );
