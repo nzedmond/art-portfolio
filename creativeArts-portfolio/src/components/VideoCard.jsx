@@ -12,32 +12,64 @@ const VideoCard = ({
   to = '#',
   className = ''
 }) => {
+  const containerRef = useRef(null);
   const videoRef = useRef(null);
   const [isHovered, setIsHovered] = useState(false);
+  const [shouldLoad, setShouldLoad] = useState(false);
 
+  // Lazy Load Observer
   useEffect(() => {
-    const video = videoRef.current;
-    if (!video || !videoSrc) return;
+    const container = containerRef.current;
+    if (!container) return;
 
-    const observer = new IntersectionObserver(
+    const lazyObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            video.play().catch(e => console.log('Autoplay prevented', e));
-          } else {
-            video.pause();
+            setShouldLoad(true);
+            lazyObserver.disconnect();
           }
         });
       },
-      { threshold: 0.5 }
+      { rootMargin: '200px' } // Load when 200px away from viewport
     );
 
-    observer.observe(video);
+    lazyObserver.observe(container);
 
-    return () => {
-      observer.disconnect();
-    };
-  }, [videoSrc]);
+    return () => lazyObserver.disconnect();
+  }, []);
+
+  // Auto-play Observer
+  useEffect(() => {
+    if (!shouldLoad || !videoSrc) return;
+
+    // Small delay to ensure ref is attached after render
+    const timeoutId = setTimeout(() => {
+      const video = videoRef.current;
+      if (!video) return;
+
+      const playObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              video.play().catch(e => {
+                // Autoplay prevented is common/expected
+              });
+            } else {
+              video.pause();
+            }
+          });
+        },
+        { threshold: 0.5 }
+      );
+
+      playObserver.observe(video);
+
+      return () => playObserver.disconnect();
+    }, 100);
+
+    return () => clearTimeout(timeoutId);
+  }, [videoSrc, shouldLoad]);
 
   const handleMouseEnter = () => setIsHovered(true);
   const handleMouseLeave = () => setIsHovered(false);
@@ -49,10 +81,10 @@ const VideoCard = ({
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <div className="video-card-wrapper">
+      <div className="video-card-wrapper" ref={containerRef}>
         {/* Media Layer */}
         <div className="video-card-media">
-          {videoSrc ? (
+          {shouldLoad && videoSrc ? (
             <video
               ref={videoRef}
               src={videoSrc}
