@@ -51,11 +51,13 @@
 }
 
 .hero-subtitle {
-  margin-top: 2rem;
-  font-size: 1.25rem;
+  margin-top: 1rem;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2rem;
   color: var(--text-primary);
   /* Make subtitle slightly brighter in hero */
-  opacity: 0.9;
+  opacity: 0.8;
 }
 
 @media (max-width: 768px) {

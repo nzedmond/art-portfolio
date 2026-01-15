@@ -11,8 +11,8 @@ const Home = () => {
     <PageTransition>
       {/* Hero Section */}
       <Hero
-        title="VISUAL STORYTELLER<br/>BASED IN [CITY]"
-        subtitle="CAPTURING MOMENTS WITH INTENTION & ARTISTRY. SPECIALIZING IN CINEMATIC VIDEOGRAPHY AND EDITORIAL PHOTOGRAPHY."
+        title="VISUAL<br/>NARRATIVES"
+        subtitle="DIRECTOR / PHOTOGRAPHER"
       />
 
       {/* Featured Work Skeleton */}
