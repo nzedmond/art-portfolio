@@ -3,6 +3,7 @@ import PageTransition from '../components/PageTransition';
 import ScrollReveal from '../components/ScrollReveal';
 import Section from '../components/Section';
 import Container from '../components/Container';
+import Card from '../components/Card';
 
 const Home = () => {
   return (
@@ -32,16 +33,32 @@ const Home = () => {
 
           <div className="grid-2">
             <ScrollReveal delay={0.1}>
-              <div className="skeleton-box aspect-video">FEATURED VIDEO PROJECT</div>
+              <Card
+                title="ECHOES OF SILENCE"
+                category="Music Video"
+                aspectRatio="video"
+              />
             </ScrollReveal>
             <ScrollReveal delay={0.2}>
-              <div className="skeleton-box aspect-portrait">FEATURED EDITORIAL</div>
+              <Card
+                title="VOGUE: SUMMER"
+                category="Editorial"
+                aspectRatio="portrait"
+              />
             </ScrollReveal>
             <ScrollReveal delay={0.3}>
-              <div className="skeleton-box aspect-portrait">COMMERCIAL SHOOT</div>
+              <Card
+                title="NIKE CAMPAIGN"
+                category="Commercial"
+                aspectRatio="portrait"
+              />
             </ScrollReveal>
             <ScrollReveal delay={0.4}>
-              <div className="skeleton-box aspect-square">MUSIC VIDEO</div>
+              <Card
+                title="URBAN RHYTHM"
+                category="Documentary"
+                aspectRatio="square"
+              />
             </ScrollReveal>
           </div>
         </Container>
