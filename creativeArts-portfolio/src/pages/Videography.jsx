@@ -6,19 +6,19 @@ import Container from '../components/Container';
 import Card from '../components/Card';
 
 const Videography = () => {
-  const projects = [1, 2, 3, 4];
+  const projects = [1, 2, 3, 4, 5, 6];
 
   return (
-    <PageTransition>
+    <PageTransition className="page-wrapper">
       <Section>
-        <Container>
+        <Container style={{ maxWidth: '900px' }}>
           <ScrollReveal>
-            <h1 className="text-hero" style={{ marginBottom: '4rem' }}>VIDEOGRAPHY</h1>
+            <h1 className="text-hero" style={{ marginBottom: '6rem', textAlign: 'center' }}>SELECTED<br />MOTION</h1>
           </ScrollReveal>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '4rem' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '8rem' }}>
             {projects.map((item, index) => (
-              <ScrollReveal key={item} delay={index * 0.1}>
+              <ScrollReveal key={item} delay={0.1} style={{ width: '100%' }}>
                 <Card
                   title={`PROJECT TITLE ${item}`}
                   category="MUSIC VIDEO / 2024"
