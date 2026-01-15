@@ -128,11 +128,37 @@
 }
 
 @media (max-width: 768px) {
+  .video-card-wrapper {
+    aspect-ratio: 4 / 5;
+    /* Vertical emphasis for mobile */
+  }
+
   .video-card-content {
     padding: 1.5rem;
+    /* Always show content on mobile */
+    transform: translateY(0);
   }
 
   .video-card-title {
     font-size: 1.5rem;
+  }
+
+  /* Make overlay & meta always visible on mobile/touch */
+  .video-card-overlay,
+  .video-card-category,
+  .play-indicator {
+    opacity: 1;
+  }
+
+  .play-indicator {
+    transform: translate(-50%, -50%) scale(1);
+    width: 60px;
+    height: 60px;
+  }
+
+  /* Disable hover scale on touch to prevent sticky states */
+  .video-card-wrapper:hover .video-card-image,
+  .video-card-wrapper:hover .video-card-video {
+    transform: none;
   }
 }
