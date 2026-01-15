@@ -1,4 +1,6 @@
 import React from 'react';
+import { motion } from 'framer-motion';
+import { CINEMATIC_EASE } from '../utils/motion';
 import PageTransition from '../components/PageTransition';
 import ScrollReveal from '../components/ScrollReveal';
 import Section from '../components/Section';
@@ -34,14 +36,19 @@ const Home = () => {
           position: 'relative',
           overflow: 'hidden'
         }}>
-          <div style={{
+          <motion.div style={{
             width: '100%',
             height: '100%',
             backgroundImage: 'url(https://images.unsplash.com/photo-1504913659239-6abc87884fb8?q=80&w=2576&auto=format&fit=crop)', // Raw monotone landscape
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             filter: 'grayscale(100%) brightness(0.8) contrast(1.1)'
-          }} role="img" aria-label="Cinematic landscape" />
+          }}
+            initial={{ scale: 1.15 }}
+            whileInView={{ scale: 1.0 }}
+            transition={{ duration: 1.8, ease: CINEMATIC_EASE }}
+            viewport={{ once: true }}
+            role="img" aria-label="Cinematic landscape" />
         </div>
       </ScrollReveal>
 
