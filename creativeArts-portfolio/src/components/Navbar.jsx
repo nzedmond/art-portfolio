@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
+import { CINEMATIC_EASE, TRANSITION_DURATION } from '../utils/motion';
 import '../styles/Navbar.css';
 
 const Navbar = () => {
@@ -40,6 +41,38 @@ const Navbar = () => {
     setIsOpen(false);
   }, [location]);
 
+  const menuVariants = {
+    closed: {
+      opacity: 0,
+      x: '100%',
+      transition: {
+        duration: TRANSITION_DURATION,
+        ease: CINEMATIC_EASE
+      }
+    },
+    open: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        duration: TRANSITION_DURATION,
+        ease: CINEMATIC_EASE
+      }
+    }
+  };
+
+  const linkVariants = {
+    closed: { y: 20, opacity: 0 },
+    open: (i) => ({
+      y: 0,
+      opacity: 1,
+      transition: {
+        delay: 0.1 + (i * 0.1),
+        duration: 0.5,
+        ease: "easeOut"
+      }
+    })
+  };
+
   return (
     <nav
       className={`navbar ${scrolled ? 'scrolled' : ''}`}
@@ -70,22 +103,21 @@ const Navbar = () => {
         {isOpen && (
           <motion.div
             className="mobile-menu"
-            initial={{ opacity: 0, x: '100%' }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: '100%' }}
-            transition={{ type: 'tween', duration: 0.3 }}
+            initial="closed"
+            animate="open"
+            exit="closed"
+            variants={menuVariants}
           >
             <ul className="mobile-links">
-              {['Home', 'Video', 'Photo', 'About', 'Contact'].map((item) => {
+              {['Home', 'Video', 'Photo', 'About', 'Contact'].map((item, i) => {
                 const path = item === 'Home' ? '/' : `/${item.toLowerCase().replace('video', 'videography').replace('photo', 'photography')}`;
                 return (
                   <motion.li
                     key={item}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.1 }}
+                    custom={i}
+                    variants={linkVariants}
                   >
-                    <NavLink to={path}>{item}</NavLink>
+                    <NavLink to={path} end={item === 'Home'}>{item}</NavLink>
                   </motion.li>
                 );
               })}
