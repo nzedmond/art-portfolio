@@ -7,13 +7,30 @@ import '../styles/Navbar.css';
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const lastScrollY = React.useRef(0);
   const location = useLocation();
 
   // Handle scroll effect
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+      const currentScrollY = window.scrollY;
+
+      // Background blur logic
+      setScrolled(currentScrollY > 50);
+
+      // Adaptive hide/show logic
+      // If scrolling down AND passed threshold -> Hide
+      // If scrolling up -> Show
+      if (currentScrollY > lastScrollY.current && currentScrollY > 100) {
+        setIsVisible(false);
+      } else {
+        setIsVisible(true);
+      }
+
+      lastScrollY.current = currentScrollY;
     };
+
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -24,7 +41,10 @@ const Navbar = () => {
   }, [location]);
 
   return (
-    <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
+    <nav
+      className={`navbar ${scrolled ? 'scrolled' : ''}`}
+      style={{ transform: isVisible ? 'translateY(0)' : 'translateY(-100%)' }}
+    >
       <div className="nav-container">
         <div className="logo">
           <NavLink to="/">EDMOND NZIVUGIRA</NavLink>
