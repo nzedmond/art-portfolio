@@ -19,7 +19,7 @@ const Contact = () => {
           <div className="grid-2">
             <div>
               <h3>EMAIL</h3>
-              <p>hello@artistname.com</p>
+              <a href="mailto:hello@artistname.com" className="link-inline">hello@artistname.com</a>
             </div>
             <div>
               <h3>SOCIALS</h3>

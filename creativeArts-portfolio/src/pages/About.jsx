@@ -1,6 +1,7 @@
 import React from 'react';
 import PageTransition from '../components/PageTransition';
 import ScrollReveal from '../components/ScrollReveal';
+import Button from '../components/Button';
 
 const About = () => {
   return (
@@ -20,9 +21,9 @@ const About = () => {
             <br /><br />
             Keep it minimal but impactful. Focus on the "why" rather than just the "how".
           </p>
-          <div className="skeleton-box" style={{ width: '150px', height: '50px' }}>
+          <Button variant="outline" href="/resume.pdf">
             RESUME
-          </div>
+          </Button>
         </ScrollReveal>
       </div>
     </PageTransition>
