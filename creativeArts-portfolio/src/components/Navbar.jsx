@@ -52,7 +52,7 @@ const Navbar = () => {
 
         {/* Desktop Navigation */}
         <ul className="nav-links desktop-only">
-          <li><NavLink to="/">Home</NavLink></li>
+          <li><NavLink to="/" end>Home</NavLink></li>
           <li><NavLink to="/videography">Video</NavLink></li>
           <li><NavLink to="/photography">Photo</NavLink></li>
           <li><NavLink to="/about">About</NavLink></li>

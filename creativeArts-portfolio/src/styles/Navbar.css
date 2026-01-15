@@ -52,16 +52,24 @@ position: relative;
   opacity: 1;
 }
 
-/* Subtle line hover effect */
+/* Minimal dot active indicator */
 .nav-links a::after {
   content: '';
   position: absolute;
-  bottom: -4px;
-  left: 0;
-  width: 0%;
-  height: 1px;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%) scale(0);
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
   background-color: var(--text-color);
-  transition: width 0.3s ease;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  opacity: 0;
+}
+
+.nav-links a.active::after {
+  transform: translateX(-50%) scale(1);
+  opacity: 1;
 }
 
 .nav-links a:hover::after,
