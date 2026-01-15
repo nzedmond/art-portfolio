@@ -5,6 +5,7 @@ import Section from '../components/Section';
 import Container from '../components/Container';
 import Card from '../components/Card';
 import Hero from '../components/Hero';
+import Button from '../components/Button';
 
 const Home = () => {
   return (
@@ -81,6 +82,23 @@ const Home = () => {
               />
             </ScrollReveal>
           </div>
+        </Container>
+      </Section>
+
+      {/* Soft CTA */}
+      <Section style={{ paddingBottom: '8rem', textAlign: 'center' }}>
+        <Container>
+          <ScrollReveal>
+            <h3 className="text-section" style={{ marginBottom: '3rem' }}>SEE THE STORIES</h3>
+            <div style={{ display: 'flex', gap: '2rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+              <Button variant="outline" to="/videography">
+                EXPLORE VIDEOGRAPHY
+              </Button>
+              <Button variant="outline" to="/photography">
+                EXPLORE PHOTOGRAPHY
+              </Button>
+            </div>
+          </ScrollReveal>
         </Container>
       </Section>
     </PageTransition>
