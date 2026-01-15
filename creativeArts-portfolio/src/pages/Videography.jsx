@@ -11,22 +11,29 @@ const Videography = () => {
   return (
     <PageTransition className="page-wrapper">
       <Section>
-        <Container style={{ maxWidth: '900px' }}>
+        {/* Full width container to allow mixing widths */}
+        <Container size="full">
           <ScrollReveal>
-            <h1 className="text-hero" style={{ marginBottom: '6rem', textAlign: 'center' }}>SELECTED<br />MOTION</h1>
+            <h1 className="text-hero" style={{ marginBottom: '15vh', textAlign: 'center' }}>SELECTED<br />MOTION</h1>
           </ScrollReveal>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '8rem' }}>
-            {projects.map((item, index) => (
-              <ScrollReveal key={item} delay={0.1} style={{ width: '100%' }}>
-                <VideoCard
-                  title={`PROJECT TITLE ${item}`}
-                  category="MUSIC VIDEO / 2024"
-                  image="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=1000&auto=format&fit=crop" // Placeholder cinematic image
-                  to="#"
-                />
-              </ScrollReveal>
-            ))}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '15vh', alignItems: 'center' }}>
+            {projects.map((item, index) => {
+              // every 3rd item is a "Feature" (wider)
+              const isFeature = index % 3 === 0;
+              const width = isFeature ? '1400px' : '900px';
+
+              return (
+                <ScrollReveal key={item} delay={0.1} style={{ width: '100%', maxWidth: width }}>
+                  <VideoCard
+                    title={`PROJECT TITLE ${item}`}
+                    category="MUSIC VIDEO / 2024"
+                    image="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=1000&auto=format&fit=crop"
+                    to={`/project/${item}`}
+                  />
+                </ScrollReveal>
+              );
+            })}
           </div>
         </Container>
       </Section>
