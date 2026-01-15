@@ -15,7 +15,6 @@ const Home = () => {
         subtitle="DIRECTOR / PHOTOGRAPHER"
       />
 
-      {/* Vision Statement */}
       <Section style={{ padding: '8rem 0', textAlign: 'center' }}>
         <Container size="md">
           <ScrollReveal>
@@ -25,6 +24,25 @@ const Home = () => {
           </ScrollReveal>
         </Container>
       </Section>
+
+      {/* Visual Reinforcement */}
+      <ScrollReveal className="w-full">
+        <div style={{
+          width: '100%',
+          height: '70vh',
+          position: 'relative',
+          overflow: 'hidden'
+        }}>
+          <div style={{
+            width: '100%',
+            height: '100%',
+            backgroundImage: 'url(https://images.unsplash.com/photo-1504913659239-6abc87884fb8?q=80&w=2576&auto=format&fit=crop)', // Raw monotone landscape
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            filter: 'grayscale(100%) brightness(0.8) contrast(1.1)'
+          }} role="img" aria-label="Cinematic landscape" />
+        </div>
+      </ScrollReveal>
 
       {/* Featured Work Skeleton */}
       <Section>
