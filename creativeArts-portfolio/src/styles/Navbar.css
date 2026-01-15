@@ -38,13 +38,14 @@
   gap: 2.5rem;
 }
 
-font-size: 0.8rem;
-text-transform: uppercase;
-letter-spacing: 0.15em;
-font-weight: 500;
-opacity: 0.8;
-color: var(--text-color);
-position: relative;
+.nav-links a {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-weight: 500;
+  opacity: 0.8;
+  color: var(--text-color);
+  position: relative;
 }
 
 .nav-links a:hover,
