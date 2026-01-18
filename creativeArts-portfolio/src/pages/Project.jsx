@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft } from 'lucide-react';
 import PageTransition from '../components/PageTransition';
 import Section from '../components/Section';
@@ -8,9 +8,11 @@ import Container from '../components/Container';
 import ScrollReveal from '../components/ScrollReveal';
 import TileGrid from '../components/TileGrid';
 import ImageTile from '../components/ImageTile';
+import Lightbox from '../components/Lightbox';
 
 const Project = () => {
   const { id } = useParams();
+  const [selectedImage, setSelectedImage] = useState(null);
 
   // Mock Data - In a real app, this would be fetched based on ID
   const project = {
@@ -87,18 +89,40 @@ const Project = () => {
               aspectRatio="landscape"
               src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=1000&auto=format&fit=crop"
               delay={0.1}
+              onClick={() => setSelectedImage("https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=1000&auto=format&fit=crop")}
+              title="Cinematic Wide"
+              category="Film"
             />
             <ImageTile
               span={4}
               aspectRatio="portrait"
               src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1000&auto=format&fit=crop"
               delay={0.2}
+              onClick={() => setSelectedImage("https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1000&auto=format&fit=crop")}
             />
 
             {/* Row 2: Three squares */}
-            <ImageTile span={4} aspectRatio="square" src="https://images.unsplash.com/photo-1519744531200-c1176874aa9d?q=80&w=1000&auto=format&fit=crop" delay={0.3} />
-            <ImageTile span={4} aspectRatio="square" src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1000&auto=format&fit=crop" delay={0.4} />
-            <ImageTile span={4} aspectRatio="square" src="https://images.unsplash.com/photo-1555685812-4b943f3db990?q=80&w=1000&auto=format&fit=crop" delay={0.5} />
+            <ImageTile
+              span={4}
+              aspectRatio="square"
+              src="https://images.unsplash.com/photo-1519744531200-c1176874aa9d?q=80&w=1000&auto=format&fit=crop"
+              delay={0.3}
+              onClick={() => setSelectedImage("https://images.unsplash.com/photo-1519744531200-c1176874aa9d?q=80&w=1000&auto=format&fit=crop")}
+            />
+            <ImageTile
+              span={4}
+              aspectRatio="square"
+              src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1000&auto=format&fit=crop"
+              delay={0.4}
+              onClick={() => setSelectedImage("https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1000&auto=format&fit=crop")}
+            />
+            <ImageTile
+              span={4}
+              aspectRatio="square"
+              src="https://images.unsplash.com/photo-1555685812-4b943f3db990?q=80&w=1000&auto=format&fit=crop"
+              delay={0.5}
+              onClick={() => setSelectedImage("https://images.unsplash.com/photo-1555685812-4b943f3db990?q=80&w=1000&auto=format&fit=crop")}
+            />
 
             {/* Row 3: Full Width */}
             <ImageTile
@@ -106,10 +130,20 @@ const Project = () => {
               aspectRatio="wide"
               src="https://images.unsplash.com/photo-1493246507139-91e8fad9978e?q=80&w=1000&auto=format&fit=crop"
               delay={0.6}
+              onClick={() => setSelectedImage("https://images.unsplash.com/photo-1493246507139-91e8fad9978e?q=80&w=1000&auto=format&fit=crop")}
             />
           </TileGrid>
         </Container>
       </Section>
+
+      <AnimatePresence>
+        {selectedImage && (
+          <Lightbox
+            src={selectedImage}
+            onClose={() => setSelectedImage(null)}
+          />
+        )}
+      </AnimatePresence>
 
     </PageTransition>
   );

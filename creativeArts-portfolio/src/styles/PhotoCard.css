@@ -1,0 +1,139 @@
+/* PhotoCard.css */
+.photo-card-link {
+  display: block;
+  width: 100%;
+  text-decoration: none;
+  color: inherit;
+  position: relative;
+}
+
+.photo-card-wrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background-color: var(--bg-contrast);
+}
+
+/* Aspect Ratios */
+.photo-card-wrapper.aspect-portrait {
+  aspect-ratio: 3 / 4;
+}
+
+.photo-card-wrapper.aspect-landscape {
+  aspect-ratio: 3 / 2;
+}
+
+.photo-card-wrapper.aspect-square {
+  aspect-ratio: 1 / 1;
+}
+
+.photo-card-wrapper.aspect-wide {
+  aspect-ratio: 16 / 9;
+}
+
+/* Image */
+/* Image */
+.photo-card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  /* Updated: Start hidden */
+  transition: opacity 1s ease, transform 1.2s cubic-bezier(0.19, 1, 0.22, 1);
+  will-change: transform, opacity;
+}
+
+.photo-card-image.is-visible {
+  opacity: 1;
+}
+
+/* Optional Shimmer/Pulse for loading state on wrapper */
+.photo-card-wrapper.loading::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: var(--bg-contrast);
+  z-index: 0;
+}
+
+/* Hover Zoom */
+.photo-card-wrapper:hover .photo-card-image {
+  transform: scale(1.03);
+  /* Subtle scale */
+}
+
+/* Minimal Caption (Below Image for Editorial Feel) or Overlay? 
+   Let's go with Overlay for now to match site, but super minimal.
+*/
+background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
+/* Match VideoCard gradient */
+opacity: 0;
+transition: opacity 0.6s ease;
+}
+
+.photo-card-wrapper:hover .photo-card-overlay {
+  opacity: 1;
+}
+
+.photo-card-info {
+  position: absolute;
+  bottom: 2rem;
+  /* Match VideoCard padding */
+  left: 2rem;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.photo-card-wrapper:hover .photo-card-info {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.photo-card-title {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  /* Match VideoCard size */
+  color: var(--text-primary);
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  /* Cinematic tight spacing */
+  line-height: 1.1;
+  margin: 0;
+}
+
+.photo-card-meta {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.7);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+@media (max-width: 768px) {
+  /* On mobile, show info without hover if needed, or rely on tap. 
+     For 'accidental interactions', maybe just keep it hidden until tap?
+     User requested 'Touch-friendly interactions'. 
+     Let's make the overlay visible on focus/active, or always slightly visible.
+     Actually, a common pattern is to just have the text appear below the image, 
+     but that changes the design significantly.
+     
+     Let's try: Overlay opacity 0 -> 1 on 'active' (tap). 
+     And maybe a subtle gradient always present so it doesn't feel 'broken'.
+  */
+
+  .photo-card-wrapper:hover .photo-card-overlay,
+  .photo-card-wrapper:active .photo-card-overlay,
+  .photo-card-wrapper:focus .photo-card-overlay {
+    opacity: 1;
+  }
+
+  .photo-card-wrapper:hover .photo-card-info,
+  .photo-card-wrapper:active .photo-card-info,
+  .photo-card-wrapper:focus .photo-card-info {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
