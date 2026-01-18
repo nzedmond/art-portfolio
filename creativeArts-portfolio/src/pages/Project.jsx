@@ -6,6 +6,8 @@ import PageTransition from '../components/PageTransition';
 import Section from '../components/Section';
 import Container from '../components/Container';
 import ScrollReveal from '../components/ScrollReveal';
+import TileGrid from '../components/TileGrid';
+import ImageTile from '../components/ImageTile';
 
 const Project = () => {
   const { id } = useParams();
@@ -73,14 +75,39 @@ const Project = () => {
         </Container>
       </Section>
 
-      {/* Visual Grid / Additional Content would go here */}
+      {/* Visual Grid / Additional Content */}
       <Section style={{ paddingBottom: '10vh' }}>
-        <Container size="full">
-          <ScrollReveal>
-            <div style={{ widows: '100%', height: '80vh', background: 'var(--bg-contrast)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <p className="text-label">ADDITIONAL MEDIA / BEHIND THE SCENES</p>
-            </div>
-          </ScrollReveal>
+        <Container size="xl">
+          <h2 className="text-section" style={{ marginBottom: '4rem', textAlign: 'center' }}>VISUALS</h2>
+
+          <TileGrid>
+            {/* Row 1: Hero landscape + Portrait */}
+            <ImageTile
+              span={8}
+              aspectRatio="landscape"
+              src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=1000&auto=format&fit=crop"
+              delay={0.1}
+            />
+            <ImageTile
+              span={4}
+              aspectRatio="portrait"
+              src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1000&auto=format&fit=crop"
+              delay={0.2}
+            />
+
+            {/* Row 2: Three squares */}
+            <ImageTile span={4} aspectRatio="square" src="https://images.unsplash.com/photo-1519744531200-c1176874aa9d?q=80&w=1000&auto=format&fit=crop" delay={0.3} />
+            <ImageTile span={4} aspectRatio="square" src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1000&auto=format&fit=crop" delay={0.4} />
+            <ImageTile span={4} aspectRatio="square" src="https://images.unsplash.com/photo-1555685812-4b943f3db990?q=80&w=1000&auto=format&fit=crop" delay={0.5} />
+
+            {/* Row 3: Full Width */}
+            <ImageTile
+              span={12}
+              aspectRatio="wide"
+              src="https://images.unsplash.com/photo-1493246507139-91e8fad9978e?q=80&w=1000&auto=format&fit=crop"
+              delay={0.6}
+            />
+          </TileGrid>
         </Container>
       </Section>
 
