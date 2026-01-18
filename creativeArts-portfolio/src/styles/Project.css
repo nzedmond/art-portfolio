@@ -1,0 +1,110 @@
+/* Project.css */
+
+/* Hero Section */
+.project-hero {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+}
+
+.project-hero-media {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.project-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, var(--bg-color) 0%, transparent 40%, rgba(0, 0, 0, 0.3) 100%);
+  pointer-events: none;
+}
+
+.project-hero-content {
+  position: absolute;
+  bottom: 10vh;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  padding: 0 2rem;
+  /* Matches Container padding default usually, but we use Container component */
+}
+
+/* Back Link */
+.project-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+  text-decoration: none;
+  font-size: 0.9rem;
+  letter-spacing: 0.1em;
+  transition: opacity 0.3s ease;
+}
+
+.project-back-link:hover {
+  opacity: 0.7;
+}
+
+/* Overview Section */
+.project-overview-grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 4rem;
+  padding-top: 5vh;
+}
+
+.project-credits {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.project-description {
+  max-width: 60ch;
+  font-size: 1.25rem;
+  line-height: 1.6;
+  color: var(--text-primary);
+}
+
+/* BTS Section */
+.project-bts-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+.project-bts-item {
+  aspect-ratio: 1/1;
+  background-color: var(--bg-contrast);
+  overflow: hidden;
+}
+
+.project-bts-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.project-bts-item:hover .project-bts-image {
+  transform: scale(1.05);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .project-overview-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .project-description {
+    font-size: 1.1rem;
+  }
+
+  .project-bts-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
