@@ -7,19 +7,29 @@ import Container from '../components/Container';
 const About = () => {
   return (
     <PageTransition>
-      {/* Opening Statement */}
+      {/* Opening Section */}
       <Section style={{ paddingTop: '15vh', paddingBottom: '10vh' }}>
         <Container size="md">
           <ScrollReveal>
+            <h1 className="text-hero" style={{
+              fontSize: 'clamp(2.5rem, 6vw, 4rem)',
+              textAlign: 'center',
+              marginBottom: '3rem',
+              fontWeight: 600,
+              letterSpacing: '-0.02em'
+            }}>
+              Making Images<br />That Matter
+            </h1>
+
             <p className="text-body" style={{
-              fontSize: '1.75rem',
+              fontSize: '1.5rem',
               lineHeight: 1.7,
               textAlign: 'center',
-              maxWidth: '50ch',
+              maxWidth: '45ch',
               margin: '0 auto',
-              color: 'var(--text-primary)'
+              color: 'rgba(255, 255, 255, 0.85)'
             }}>
-              I'm a visual storyteller working across film and photography. I focus on capturing moments that feel real, not manufactured.
+              I care about the moments between the moments—the ones that feel honest and unforced. That's where the real story lives.
             </p>
           </ScrollReveal>
         </Container>
@@ -55,6 +65,32 @@ const About = () => {
               }}>
                 I've been doing this for a while now. The technical side matters, but it's always in service of the story or the feeling we're trying to create.
               </p>
+            </div>
+          </ScrollReveal>
+        </Container>
+      </Section>
+
+      {/* Visual Presence */}
+      <Section style={{ paddingTop: '5vh', paddingBottom: '5vh' }}>
+        <Container size="md">
+          <ScrollReveal delay={0.3}>
+            <div style={{
+              maxWidth: '700px',
+              margin: '0 auto',
+              aspectRatio: '4 / 5',
+              overflow: 'hidden',
+              backgroundColor: 'var(--bg-contrast)'
+            }}>
+              <img
+                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000&auto=format&fit=crop"
+                alt="Portrait"
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover'
+                }}
+                loading="lazy"
+              />
             </div>
           </ScrollReveal>
         </Container>
