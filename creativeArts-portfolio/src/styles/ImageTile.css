@@ -167,3 +167,35 @@
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
+
+/* Mobile Optimization */
+@media (max-width: 768px) {
+  .tile-grid {
+    gap: 1rem;
+    /* Tighter spacing on mobile */
+  }
+
+  /* All tiles go full-width on mobile for vertical emphasis */
+  .tile-span-12,
+  .tile-span-8,
+  .tile-span-6,
+  .tile-span-4 {
+    grid-column: span 12;
+  }
+
+  /* Adjust aspect ratios for mobile viewing */
+  .ratio-wide,
+  .ratio-landscape {
+    aspect-ratio: 16 / 10;
+    /* Slightly taller for mobile */
+  }
+
+  .ratio-portrait {
+    aspect-ratio: 4 / 5;
+    /* Vertical emphasis */
+  }
+
+  .ratio-square {
+    aspect-ratio: 1 / 1;
+  }
+}

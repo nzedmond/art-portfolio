@@ -17,7 +17,8 @@
 .project-hero-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, var(--bg-color) 0%, transparent 40%, rgba(0, 0, 0, 0.3) 100%);
+  background: linear-gradient(to top, var(--bg-color) 0%, transparent 30%);
+  /* Removed top darken, reduced bottom fade height */
   pointer-events: none;
 }
 
@@ -95,16 +96,54 @@
 
 /* Responsive */
 @media (max-width: 768px) {
+
+  /* Hero Section - Vertical emphasis */
+  .project-hero {
+    height: 100vh;
+    /* Keep full height for immersion */
+  }
+
+  .project-hero-content {
+    bottom: 8vh;
+  }
+
+  .project-back-link {
+    font-size: 0.8rem;
+    margin-bottom: 1.5rem;
+  }
+
+  /* Overview Section - Larger text for readability */
   .project-overview-grid {
     grid-template-columns: 1fr;
     gap: 3rem;
   }
 
+  /* Credits - Stack vertically, larger touch targets */
+  .project-credits {
+    flex-direction: column !important;
+    gap: 2rem !important;
+    align-items: flex-start !important;
+  }
+
+  .project-credits>div {
+    width: 100%;
+  }
+
+  /* Description - Optimize for mobile reading */
   .project-description {
     font-size: 1.1rem;
   }
 
+  /* BTS Grid - 2 columns on mobile */
   .project-bts-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+
+  /* Process Notes - Full width, larger text */
+  .project-bts-grid+div,
+  div[style*="maxWidth: '60ch'"] {
+    max-width: 100% !important;
+    padding: 0 1rem;
   }
 }
