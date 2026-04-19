@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Name | Photography Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0a0a0a;
+  --fg:#e8e4df;
+  --fg-dim:#807b74;
+  --fg-faint:#4a4740;
+  --accent:#c9b99a;
+  --nav-w:260px;
+  --gap:4px;
+}
+body,html{
+  background:var(--bg);
+  color:var(--fg);
+  font-family:'Jost',sans-serif;
+  overflow-x:hidden;
+  scroll-behavior:smooth;
+}
+
+/* ══════════════════════════════════════════════
+   HERO SECTION
+   Full-viewport cinematic opener inspired by
+   Andrea Neff's photography portfolio hero.
+   Replace the image URL in the HTML below.
+   ══════════════════════════════════════════════ */
+.hero{
+  position:relative;
+  width:100%;
+  height:100vh;
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.hero-bg{
+  position:absolute;
+  inset:0;
+  z-index:0;
+}
+.hero-bg img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  filter:brightness(0.45) contrast(1.05);
+  transform:scale(1.05);
+  animation:heroZoom 20s ease-in-out infinite alternate;
+}
+@keyframes heroZoom{
+  from{transform:scale(1.05)}
+  to{transform:scale(1.12)}
+}
+.hero-overlay{
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(to bottom, rgba(10,10,10,0.3) 0%, transparent 30%, transparent 60%, rgba(10,10,10,0.85) 100%),
+    linear-gradient(to right, rgba(10,10,10,0.4) 0%, transparent 50%);
+  z-index:1;
+}
+.hero-content{
+  position:relative;
+  z-index:2;
+  text-align:center;
+  max-width:800px;
+  padding:0 40px;
+}
+.hero-name{
+  font-family:'Cormorant Garamond',serif;
+  font-weight:300;
+  font-size:clamp(42px, 8vw, 96px);
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  color:#fff;
+  line-height:1.1;
+  margin-bottom:20px;
+  opacity:0;
+  animation:heroFadeUp 1.4s cubic-bezier(0.22,1,0.36,1) 0.3s forwards;
+}
+.hero-subtitle{
+  font-family:'Cormorant Garamond',serif;
+  font-weight:300;
+  font-style:italic;
+  font-size:clamp(16px, 2.5vw, 24px);
+  letter-spacing:0.15em;
+  color:rgba(255,255,255,0.65);
+  margin-bottom:8px;
+  opacity:0;
+  animation:heroFadeUp 1.4s cubic-bezier(0.22,1,0.36,1) 0.7s forwards;
+}
+.hero-divider{
+  width:48px;
+  height:1px;
+  background:var(--accent);
+  margin:24px auto;
+  opacity:0;
+  animation:heroFadeUp 1.4s cubic-bezier(0.22,1,0.36,1) 0.9s forwards;
+}
+.hero-cta{
+  font-family:'Jost',sans-serif;
+  font-weight:300;
+  font-size:12px;
+  letter-spacing:4px;
+  text-transform:uppercase;
+  color:rgba(255,255,255,0.7);
+  text-decoration:none;
+  border:1px solid rgba(255,255,255,0.25);
+  padding:14px 36px;
+  display:inline-block;
+  transition:all 0.4s ease;
+  opacity:0;
+  animation:heroFadeUp 1.4s cubic-bezier(0.22,1,0.36,1) 1.1s forwards;
+}
+.hero-cta:hover{
+  background:rgba(255,255,255,0.08);
+  border-color:rgba(255,255,255,0.5);
+  color:#fff;
+}
+
+/* scroll indicator */
+.hero-scroll{
+  position:absolute;
+  bottom:36px;
+  left:50%;
+  transform:translateX(-50%);
+  z-index:2;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:8px;
+  opacity:0;
+  animation:heroFadeUp 1.4s cubic-bezier(0.22,1,0.36,1) 1.5s forwards;
+}
+.hero-scroll span{
+  font-size:10px;
+  letter-spacing:4px;
+  text-transform:uppercase;
+  color:rgba(255,255,255,0.4);
+  font-weight:300;
+}
+.scroll-line{
+  width:1px;
+  height:40px;
+  background:linear-gradient(to bottom, rgba(255,255,255,0.5), transparent);
+  animation:scrollPulse 2s ease-in-out infinite;
+}
+@keyframes scrollPulse{
+  0%,100%{opacity:0.3;transform:scaleY(0.6)}
+  50%{opacity:1;transform:scaleY(1)}
+}
+@keyframes heroFadeUp{
+  from{opacity:0;transform:translateY(30px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+/* hero top navigation bar */
+.hero-nav{
+  position:absolute;
+  top:0;left:0;right:0;
+  z-index:3;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:32px 48px;
+}
+.hero-logo{
+  font-family:'Cormorant Garamond',serif;
+  font-weight:400;
+  font-size:13px;
+  letter-spacing:5px;
+  text-transform:uppercase;
+  color:rgba(255,255,255,0.8);
+}
+.hero-links{
+  display:flex;
+  gap:28px;
+}
+.hero-links a{
+  font-family:'Jost',sans-serif;
+  font-size:11px;
+  font-weight:300;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  color:rgba(255,255,255,0.5);
+  text-decoration:none;
+  transition:color 0.3s;
+}
+.hero-links a:hover{color:#fff}
+
+
+/* ══════════════════════════════════════════════
+   PORTFOLIO SECTION (below hero)
+   ══════════════════════════════════════════════ */
+.portfolio{display:flex;min-height:100vh}
+
+/* ── SIDEBAR ── */
+.sidebar{
+  width:var(--nav-w);
+  height:100vh;
+  padding:48px 36px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  position:sticky;
+  top:0;
+  z-index:10;
+  border-right:1px solid rgba(255,255,255,0.04);
+}
+.logo{
+  font-family:'Cormorant Garamond',serif;
+  font-weight:300;
+  font-size:14px;
+  letter-spacing:4px;
+  text-transform:uppercase;
+  color:var(--fg);
+  margin-bottom:48px;
+  line-height:1.6;
+}
+.logo span{
+  display:block;
+  font-size:11px;
+  letter-spacing:6px;
+  color:var(--fg-dim);
+}
+.tagline{
+  font-family:'Cormorant Garamond',serif;
+  font-size:22px;
+  font-weight:300;
+  font-style:italic;
+  color:var(--fg-dim);
+  margin-bottom:48px;
+  line-height:1.5;
+  letter-spacing:0.5px;
+}
+
+/* ── NAV ── */
+nav ul{list-style:none;padding:0}
+nav li{margin-bottom:2px}
+nav a{
+  display:block;
+  padding:10px 0;
+  font-size:13px;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  color:var(--fg-dim);
+  text-decoration:none;
+  transition:color 0.3s, padding-left 0.3s;
+  font-weight:300;
+  position:relative;
+}
+nav a:hover, nav a.active{color:var(--fg);padding-left:12px}
+nav a.active::before{
+  content:'';
+  position:absolute;
+  left:0;top:50%;
+  transform:translateY(-50%);
+  width:4px;height:4px;
+  border-radius:50%;
+  background:var(--accent);
+}
+
+.sidebar-footer{
+  font-size:10px;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  color:var(--fg-faint);
+  line-height:1.8;
+}
+
+/* ── MAIN CONTENT ── */
+.main{
+  flex:1;
+  padding:20px;
+}
+
+/* ── GALLERY GRID ── */
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(auto-fill, minmax(220px, 1fr));
+  gap:var(--gap);
+  animation:fadeUp 1.2s ease both;
+}
+.gallery-item{
+  position:relative;
+  overflow:hidden;
+  cursor:pointer;
+}
+.gallery-item img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  filter:grayscale(20%);
+  transition:filter 0.6s, transform 0.6s;
+}
+.gallery-item:hover img{
+  filter:grayscale(0%);
+  transform:scale(1.03);
+}
+.gallery-item .overlay{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(transparent 60%, rgba(0,0,0,0.5));
+  opacity:0;
+  transition:opacity 0.4s;
+  display:flex;
+  align-items:flex-end;
+  padding:16px;
+}
+.gallery-item:hover .overlay{opacity:1}
+.overlay span{
+  font-size:11px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:rgba(255,255,255,0.8);
+  font-weight:300;
+}
+
+/* ── LIGHTBOX ── */
+.lightbox{
+  display:none;
+  position:fixed;
+  inset:0;
+  z-index:100;
+  background:rgba(0,0,0,0.95);
+  align-items:center;
+  justify-content:center;
+  cursor:zoom-out;
+  animation:fadeIn 0.3s ease;
+}
+.lightbox.open{display:flex}
+.lightbox img{max-width:85vw;max-height:88vh;object-fit:contain}
+.lightbox-close{
+  position:absolute;
+  top:24px;right:32px;
+  font-size:14px;
+  letter-spacing:4px;
+  text-transform:uppercase;
+  color:var(--fg-dim);
+  cursor:pointer;
+  font-family:'Jost',sans-serif;
+  font-weight:300;
+  transition:color 0.3s;
+}
+.lightbox-close:hover{color:var(--fg)}
+.lightbox-caption{
+  position:absolute;
+  bottom:28px;left:50%;
+  transform:translateX(-50%);
+  font-size:11px;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  color:var(--fg-dim);
+  font-weight:300;
+}
+
+/* ── ABOUT ── */
+#about-section{
+  display:none;
+  padding:40px 20px;
+  max-width:560px;
+  animation:fadeUp 0.8s ease both;
+}
+#about-section h2{
+  font-family:'Cormorant Garamond',serif;
+  font-weight:300;
+  font-size:32px;
+  color:var(--fg);
+  margin-bottom:24px;
+  letter-spacing:1px;
+}
+#about-section p{
+  font-size:15px;
+  line-height:1.9;
+  color:var(--fg-dim);
+  font-weight:300;
+  margin-bottom:20px;
+}
+#about-section .contact-email{
+  font-size:13px;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  color:var(--accent);
+  font-weight:300;
+  text-decoration:none;
+}
+#about-section .contact-email:hover{
+  color:var(--fg);
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+
+/* ── RESPONSIVE ── */
+@media(max-width:768px){
+  .hero-nav{padding:20px 24px}
+  .hero-links{gap:16px}
+  .hero-content{padding:0 24px}
+  .sidebar{
+    position:relative;
+    width:100%;
+    height:auto;
+    border-right:none;
+    border-bottom:1px solid rgba(255,255,255,0.04);
+    padding:28px 24px;
+  }
+  .tagline{font-size:18px;margin-bottom:24px}
+  .main{margin-left:0}
+  .gallery{grid-template-columns:repeat(auto-fill, minmax(150px, 1fr))}
+  .portfolio{flex-direction:column}
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════════════════
+     HERO SECTION
+     Replace the hero image URL below with your own featured photo.
+     ══════════════════════════════════════════════════════════════ -->
+<section class="hero" id="hero">
+  <div class="hero-bg">
+    <img src="pictures/portraits/IMG_0069.jpg"
+         alt="Featured photograph">
+  </div>
+  <div class="hero-overlay"></div>
+
+  <!-- top navigation bar over hero -->
+  <div class="hero-nav">
+    <div class="hero-logo">Edmond Nzivugira</div>
+    <div class="hero-links">
+      <a href="#work">Work</a>
+      <a href="#" data-hero-cat="about">About</a>
+      <a href="mailto:giraed628@gmail.com">Contact</a>
+    </div>
+  </div>
+
+  <!-- centered hero text -->
+  <div class="hero-content">
+    <div class="hero-subtitle">Portraits &middot; Landscapes &middot; Street</div>
+    <h1 class="hero-name">Edmond Nzivugira</h1>
+    <div class="hero-divider"></div>
+    <a href="#work" class="hero-cta">View portfolio</a>
+  </div>
+
+  <!-- scroll indicator -->
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════════
+     PORTFOLIO SECTION
+     ══════════════════════════════════════════════════════════════ -->
+<section id="work">
+<div class="portfolio">
+  <aside class="sidebar">
+    <div>
+      <div class="logo">
+        Edmond Nzivugira
+        <span>Photography</span>
+      </div>
+      <div class="tagline">Moments<br>in stillness</div>
+      <nav>
+        <ul>
+          <li><a href="#" class="active" data-cat="all">All work</a></li>
+          <li><a href="#" data-cat="portraits">Portraits</a></li>
+          <li><a href="#" data-cat="landscapes">Landscapes</a></li>
+          <li><a href="#" data-cat="street">Street</a></li>
+          <li><a href="#" data-cat="about">About</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="sidebar-footer">&copy; 2026<br>Edmond Nzivugira</div>
+  </aside>
+
+  <main class="main">
+    <div class="gallery" id="gallery"></div>
+
+    <div id="about-section">
+      <h2>About</h2>
+      <p>A photographer drawn to the quiet tension between light and shadow. Working across portraiture, landscape, and the rhythms of street life.</p>
+      <p>Based in New York. Available for commissions, editorials, and collaborations.</p>
+      <a href="mailto:giraed628@gmail.com" class="contact-email">giraed628@gmail.com</a>
+    </div>
+  </main>
+</div>
+</section>
+
+
+<!-- ── LIGHTBOX ── -->
+<div class="lightbox" id="lightbox">
+  <div class="lightbox-close">Close</div>
+  <img id="lb-img" src="" alt="">
+  <div class="lightbox-caption" id="lb-cap"></div>
+</div>
+
+
+<script>
+// ════════════════════════════════════════════════════════════════
+// PHOTO DATA — Replace these with your own images!
+//
+// Each entry:
+//   src  — URL or local path to the image
+//   cat  — must match a data-cat value in the nav
+//   cap  — caption shown on hover and in the lightbox
+//   ar   — CSS aspect-ratio for the grid cell
+// ════════════════════════════════════════════════════════════════
+const photos = [
+  { src: "pictures/portraits/IMG_0087.jpg",       cat: "portraits",   cap: "Portrait I",     ar: "3/4"   },
+  { src: "pictures/portraits/IMG_0112.jpg",       cat: "portraits",   cap: "Portrait II",    ar: "2/3"   },
+  { src: "pictures/portraits/IMG_0130 (1).jpg",   cat: "portraits",   cap: "Portrait III",   ar: "4/5"   },
+  { src: "pictures/portraits/IMG_0141.jpg",       cat: "portraits",   cap: "Portrait IV",    ar: "3/4"   },
+  { src: "pictures/portraits/IMG_0151.jpg",       cat: "portraits",   cap: "Portrait V",     ar: "2/3"   },
+  { src: "pictures/portraits/IMG_0179.jpg",       cat: "portraits",   cap: "Portrait VI",    ar: "4/5"   },
+  { src: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=600&q=80",   cat: "landscapes",  cap: "Morning mist",   ar: "16/10" },
+  { src: "https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=600&q=80",   cat: "landscapes",  cap: "Golden valley",  ar: "16/9"  },
+  { src: "https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=600&q=80",   cat: "landscapes",  cap: "Still waters",   ar: "16/10" },
+  { src: "https://images.unsplash.com/photo-1433086966358-54859d0ed716?w=600&q=80",   cat: "landscapes",  cap: "Cascade",        ar: "3/4"   },
+  { src: "https://images.unsplash.com/photo-1465056836900-8f1e940f2114?w=600&q=80",   cat: "landscapes",  cap: "Horizon line",   ar: "16/9"  },
+  { src: "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=600&q=80",   cat: "street",      cap: "City pulse",     ar: "16/9"  },
+  { src: "https://images.unsplash.com/photo-1517732306149-e8f829eb588a?w=600&q=80",   cat: "street",      cap: "Night walk",     ar: "3/4"   },
+  { src: "https://images.unsplash.com/photo-1494522855154-9297ac14b55f?w=600&q=80",   cat: "street",      cap: "Crossroads",     ar: "4/5"   },
+  { src: "https://images.unsplash.com/photo-1519501025264-65ba15a82390?w=600&q=80",   cat: "street",      cap: "Reflections",    ar: "16/9"  },
+  { src: "https://images.unsplash.com/photo-1476973422084-e0fa29cfdddc?w=600&q=80",   cat: "street",      cap: "Transit",        ar: "3/4"   },
+];
+
+// ════════════════════════════════════════════════════════════════
+// GALLERY RENDERER
+// ════════════════════════════════════════════════════════════════
+const gallery      = document.getElementById('gallery');
+const aboutSection = document.getElementById('about-section');
+const lightbox     = document.getElementById('lightbox');
+const lbImg        = document.getElementById('lb-img');
+const lbCap        = document.getElementById('lb-cap');
+
+function render(cat) {
+  gallery.style.display      = 'grid';
+  aboutSection.style.display = 'none';
+
+  if (cat === 'about') {
+    gallery.style.display      = 'none';
+    aboutSection.style.display = 'block';
+    return;
+  }
+
+  const items = cat === 'all' ? photos : photos.filter(p => p.cat === cat);
+  gallery.innerHTML = '';
+
+  items.forEach((p, i) => {
+    const d = document.createElement('div');
+    d.className = 'gallery-item';
+    d.style.aspectRatio = p.ar;
+
+    d.innerHTML = `
+      <img src="${p.src}" alt="${p.cap}" loading="lazy">
+      <div class="overlay"><span>${p.cap}</span></div>
+    `;
+
+    d.addEventListener('click', () => {
+      lbImg.src = p.src;
+      lbCap.textContent = p.cap;
+      lightbox.classList.add('open');
+    });
+
+    gallery.appendChild(d);
+  });
+
+  gallery.style.animation = 'none';
+  gallery.offsetHeight;
+  gallery.style.animation = 'fadeUp 1s ease both';
+}
+
+// ════════════════════════════════════════════════════════════════
+// NAV CLICK HANDLERS (sidebar)
+// ════════════════════════════════════════════════════════════════
+document.querySelectorAll('nav a').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    document.querySelectorAll('nav a').forEach(x => x.classList.remove('active'));
+    a.classList.add('active');
+    render(a.dataset.cat);
+  });
+});
+
+// Hero "About" link → scroll to work section and show about
+document.querySelector('[data-hero-cat="about"]').addEventListener('click', e => {
+  e.preventDefault();
+  document.getElementById('work').scrollIntoView({ behavior: 'smooth' });
+  setTimeout(() => {
+    document.querySelectorAll('nav a').forEach(x => x.classList.remove('active'));
+    document.querySelector('[data-cat="about"]').classList.add('active');
+    render('about');
+  }, 600);
+});
+
+// ════════════════════════════════════════════════════════════════
+// LIGHTBOX
+// ════════════════════════════════════════════════════════════════
+lightbox.addEventListener('click', () => lightbox.classList.remove('open'));
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') lightbox.classList.remove('open');
+});
+
+// ════════════════════════════════════════════════════════════════
+// HERO PARALLAX — subtle depth on scroll
+// ════════════════════════════════════════════════════════════════
+const heroBg = document.querySelector('.hero-bg img');
+const heroEl = document.querySelector('.hero');
+window.addEventListener('scroll', () => {
+  const scrollY = window.scrollY;
+  const heroH = heroEl.offsetHeight;
+  if (scrollY < heroH) {
+    heroBg.style.transform = `scale(${1.05 + scrollY * 0.0002}) translateY(${scrollY * 0.3}px)`;
+    heroEl.style.opacity = 1 - (scrollY / heroH) * 0.5;
+  }
+}, { passive: true });
+
+// ── INITIAL RENDER ──
+render('all');
+</script>
+
+</body>
+</html>
