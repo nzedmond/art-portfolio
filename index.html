@@ -384,6 +384,40 @@ nav a.active::before{
   font-weight:300;
   margin-bottom:20px;
 }
+
+/* ── FOOTER ── */
+footer{
+  background:var(--bg);
+  border-top:1px solid rgba(255,255,255,0.04);
+  padding:48px 20px;
+  text-align:center;
+}
+.footer-links{
+  display:flex;
+  justify-content:center;
+  gap:32px;
+  margin-bottom:24px;
+}
+.footer-links a{
+  font-size:12px;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  color:var(--fg-dim);
+  text-decoration:none;
+  font-weight:300;
+  transition:color 0.3s, transform 0.3s;
+}
+.footer-links a:hover{
+  color:var(--accent);
+  transform:translateY(-2px);
+}
+.footer-credit{
+  font-size:10px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:var(--fg-faint);
+  font-weight:300;
+}
 #about-section .contact-email{
   font-size:13px;
   letter-spacing:3px;
@@ -497,6 +531,18 @@ nav a.active::before{
 </section>
 
 
+<!-- ══════════════════════════════════════════════════════════════
+     FOOTER
+     ══════════════════════════════════════════════════════════════ -->
+<footer>
+  <div class="footer-links">
+    <a href="https://www.instagram.com/giraed.pixels?igsh=MXdocml6MTYzMXpneA%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer">Instagram</a>
+    <a href="https://www.linkedin.com/in/nzedmond/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+  </div>
+  <div class="footer-credit">&copy; 2026 Edmond Nzivugira</div>
+</footer>
+
+
 <!-- ── LIGHTBOX ── -->
 <div class="lightbox" id="lightbox">
   <div class="lightbox-close">Close</div>
@@ -522,16 +568,10 @@ const photos = [
   { src: "pictures/portraits/IMG_0141.jpg",       cat: "portraits",   cap: "Portrait IV",    ar: "3/4"   },
   { src: "pictures/portraits/IMG_0151.jpg",       cat: "portraits",   cap: "Portrait V",     ar: "2/3"   },
   { src: "pictures/portraits/IMG_0179.jpg",       cat: "portraits",   cap: "Portrait VI",    ar: "4/5"   },
-  { src: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=600&q=80",   cat: "landscapes",  cap: "Morning mist",   ar: "16/10" },
-  { src: "https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=600&q=80",   cat: "landscapes",  cap: "Golden valley",  ar: "16/9"  },
-  { src: "https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=600&q=80",   cat: "landscapes",  cap: "Still waters",   ar: "16/10" },
-  { src: "https://images.unsplash.com/photo-1433086966358-54859d0ed716?w=600&q=80",   cat: "landscapes",  cap: "Cascade",        ar: "3/4"   },
-  { src: "https://images.unsplash.com/photo-1465056836900-8f1e940f2114?w=600&q=80",   cat: "landscapes",  cap: "Horizon line",   ar: "16/9"  },
-  { src: "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=600&q=80",   cat: "street",      cap: "City pulse",     ar: "16/9"  },
-  { src: "https://images.unsplash.com/photo-1517732306149-e8f829eb588a?w=600&q=80",   cat: "street",      cap: "Night walk",     ar: "3/4"   },
-  { src: "https://images.unsplash.com/photo-1494522855154-9297ac14b55f?w=600&q=80",   cat: "street",      cap: "Crossroads",     ar: "4/5"   },
-  { src: "https://images.unsplash.com/photo-1519501025264-65ba15a82390?w=600&q=80",   cat: "street",      cap: "Reflections",    ar: "16/9"  },
-  { src: "https://images.unsplash.com/photo-1476973422084-e0fa29cfdddc?w=600&q=80",   cat: "street",      cap: "Transit",        ar: "3/4"   },
+  { src: "pictures/portraits/DSC01127.jpg",   cat: "portraits",  cap: "Student",   ar: "16/10" },
+  { src: "pictures/portraits/IMG_0447.jpg",   cat: "portraits",  cap: "Parent and a child",  ar: "16/9"  },
+  { src: "pictures/portraits/DSC01334.jpg",   cat: "portraits",  cap: "Family",   ar: "16/10" },
+  { src: "pictures/portraits/DSC01539.jpg",   cat: "portraits",  cap: "Family II",        ar: "16/9"   },
 ];
 
 // ════════════════════════════════════════════════════════════════
